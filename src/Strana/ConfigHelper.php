@@ -40,7 +40,7 @@ class ConfigHelper {
     /**
      * @todo
      */ 
-    protected function getBaseUrl(){
+    public function getBaseUrl(){
         if( isset($this->config['baseUrl']) ){
             return $this->config['baseUrl'];
         }
