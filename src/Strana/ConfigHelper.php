@@ -18,14 +18,14 @@ class ConfigHelper {
     /**
      * Set default config values
      */
-    protected function setDefaults($input)
+    protected function setDefaults($input=null)
     {
-        $get = is_array($input) ? $input : $_GET;
+        if( ! $input ) $input = $_GET;
         if( ! isset($this->config['pageVar']) ){
             $this->config['pageVar'] = 'page';
         }
         $pageVar = $this->config['pageVar'];
-        $page = isset($get[$pageVar]) ? (int) $get['page'] : 1;
+        $page = isset($input[$pageVar]) ? (int) $input[$pageVar] : 1;
         $defaults = array(
             'perPage'           =>  20,
             'page'              =>  $page,
