@@ -116,8 +116,15 @@ class ConfigHelper {
     /**
      * @todo
      */ 
-    public function getSelf(){
+    public function getAll(){
         return $this->config;
     }
 
+    /**
+     * @todo
+     */
+    public function getLimitQuery(){
+        // limit
+        return sprintf('LIMIT %d,%d', $this->getOffset(), $this->getLimit());
+    }    
 }
