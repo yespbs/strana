@@ -9,18 +9,18 @@ class ConfigHelper {
     /**
      * @param array $config
      */
-    public function __construct(Array $config)
+    public function __construct(Array $config, $input=null)
     {
         $this->config = $config;
-        $this->setDefaults();
+        $this->setDefaults($input);
     }
 
     /**
      * Set default config values
      */
-    protected function setDefaults()
+    protected function setDefaults($input)
     {
-        $get = $_GET;
+        $get = is_array($input) ? $input : $_GET;
         if( ! isset($this->config['pageVar']) ){
             $this->config['pageVar'] = 'page';
         }
