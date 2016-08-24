@@ -113,4 +113,11 @@ class ConfigHelper {
         return $this->config['pageVar'];
     }
 
+    /**
+     * @todo
+     */ 
+    public function getSelf(){
+        return $this->config;
+    }
+
 }
