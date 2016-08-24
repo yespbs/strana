@@ -87,10 +87,8 @@ class Paginator
      */
     public function setConfig( $config )
     {
-        if( $config instanceof Strana\ConfigHelper ){
-            $this->config = $config->getSelf();
-
-            return $this;
+        if( $config instanceof ConfigHelper ){
+            return $this->config = $config->getSelf();
         }
 
         $this->config = $config;
