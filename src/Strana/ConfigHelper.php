@@ -41,6 +41,10 @@ class ConfigHelper {
      * @todo
      */ 
     protected function getBaseUrl(){
+        if( isset($this->config['baseUrl']) ){
+            return $this->config['baseUrl'];
+        }
+
         return 
             'http'
             .(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? 's':'')

@@ -63,11 +63,14 @@ class LinkCreator {
     protected function buildQueryString($page)
     {
         $pageVar = $this->configHelper->getPageVar();
+        $baseUrl = $this->configHelper->getBaseUrl();
 
         $get = $_GET;
         $get[$pageVar] = $page;
         $queryString = http_build_query($get);
-        return $queryString = '?' . $queryString;
+        $append = strpos($baseUrl, '?') === false ? '?' : '&';
+        
+        return $queryString = $baseUrl . $append . $queryString;
     }
 
     /**
