@@ -21,15 +21,33 @@ class ConfigHelper {
     protected function setDefaults()
     {
         $get = $_GET;
-        $page = isset($get['page']) ? (int) $get['page'] : 1;
+        if( ! isset($this->config['pageVar']) ){
+            $this->config['pageVar'] = 'page';
+        }
+        $pageVar = $this->config['pageVar'];
+        $page = isset($get[$pageVar]) ? (int) $get['page'] : 1;
         $defaults = array(
             'perPage'           =>  20,
             'page'              =>  $page,
             'maximumPages'      =>  5,
             'infiniteScroll'    =>  false,
+            'baseUrl'           =>  $this->getBaseUrl(),
         );
 
         $this->config = array_merge($defaults, $this->config);
+    }
+
+    /**
+     * @todo
+     */ 
+    protected function getBaseUrl(){
+        return 
+            'http'
+            .(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? 's':'')
+            .'://'
+            .$_SERVER['SERVER_NAME']
+            .(isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] != '80' ? ':'.$_SERVER["SERVER_PORT"]: '')
+            .$_SERVER['REQUEST_URL'];
     }
 
     /**
@@ -82,6 +100,13 @@ class ConfigHelper {
         // If we have decimal value like 2.2 then we need 3 pages, ceil it.
         $pages = ceil($pages);
         return $pages;
+    }
+
+    /**
+     * @todo
+     */ 
+    public function getPageVar(){
+        return $this->config['pageVar'];
     }
 
 }
