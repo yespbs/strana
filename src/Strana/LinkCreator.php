@@ -102,7 +102,7 @@ class LinkCreator {
         if (isset($total, $limit) === true)
         {
             // fails when total is 0
-            $result = ($total > 0) ? range(1, ceil($total / $limit)):  array();
+            $result = ($total > 0) ? range(1, ceil($total / $limit)):  array(1);
 
             if (isset($current, $adjacents) === true)
             {
